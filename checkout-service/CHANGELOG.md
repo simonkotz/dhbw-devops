@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/simonkotz/dhbw-devops/compare/checkout-service-1.1.0...checkout-service-1.2.0) (2026-02-25)
+
+
+### Features
+
+* add Makefile, CI pipeline (go.yml), CD pipeline (publish.yml), and go.mod for each service ([93b145d](https://github.com/simonkotz/dhbw-devops/commit/93b145d45362325f3a68ce96555ed0327a656807))
+
 ## [1.1.0](https://github.com/simonkotz/dhbw-devops/compare/checkout-service-1.0.0...checkout-service-1.1.0) (2026-02-25)
 
 
