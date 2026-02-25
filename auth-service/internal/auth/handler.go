@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/simonkotz/dhbw-devops/pkg/jwt"
+	"github.com/simonkotz/dhbw-devops/auth-service/pkg/jwt"
 )
 
 func AuthLoginHandler(w http.ResponseWriter, r *http.Request) {

@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/simonkotz/dhbw-devops/pkg/jwt"
+	"github.com/simonkotz/dhbw-devops/checkout-service/pkg/jwt"
 )
 
 func CheckoutPlaceOrderHandler(w http.ResponseWriter, r *http.Request) {
