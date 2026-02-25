@@ -10,9 +10,12 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
+    # Define a matrix of services to build and test in parallel
+    strategy:
+      matrix:
+        service: [auth-service, checkout-service, product-service]
     steps:
     - uses: actions/checkout@v6
 
@@ -21,8 +24,10 @@ jobs:
       with:
         go-version: '1.25.7'
 
-    - name: Build
+    - name: Build ${{ matrix.service }}
+      working-directory: ./${{ matrix.service }}
       run: go build -v ./...
 
-    - name: Test
+    - name: Test ${{ matrix.service }}
+      working-directory: ./${{ matrix.service }}
       run: go test -v ./...
