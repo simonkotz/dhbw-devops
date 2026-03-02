@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-	log.Printf("Product Service v1.2.0 starting...\n")
 
 	mux := http.NewServeMux()
 	// Product Service

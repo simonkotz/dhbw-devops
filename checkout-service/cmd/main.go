@@ -10,7 +10,6 @@ import (
 )
 
 func main() {
-	log.Printf("Checkout Service v1.2.0 starting...\n")
 
 	jwt.SetSecretKey([]byte("secret-key"))
 
