@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/simonkotz/dhbw-devops/compare/product-service-1.2.0...product-service-1.3.0) (2026-03-02)
+
+
+### Features
+
+* add startup logs ([208f918](https://github.com/simonkotz/dhbw-devops/commit/208f9181b6a14918752a1d282b6263594a80ff12))
+
 ## [1.2.0](https://github.com/simonkotz/dhbw-devops/compare/product-service-1.1.0...product-service-1.2.0) (2026-02-25)
 
 
