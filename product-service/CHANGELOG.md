@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/simonkotz/dhbw-devops/compare/product-service-1.3.0...product-service-1.4.0) (2026-03-02)
+
+
+### Features
+
+* changed logging ([ed2dd36](https://github.com/simonkotz/dhbw-devops/commit/ed2dd369a127d8339c170a0bc770db068cdd62e9))
+
 ## [1.3.0](https://github.com/simonkotz/dhbw-devops/compare/product-service-1.2.0...product-service-1.3.0) (2026-03-02)
 
 
