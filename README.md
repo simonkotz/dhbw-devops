@@ -26,7 +26,49 @@ Diese Anwendung ist ein einfaches E-Commerce-Backend, das die grundlegenden Funk
 - `GET /products/{id}` - Einzelnes Produkt abrufen
 
 ### Bestellung
-- `POST /checkout` - Bestellung abschließen (benötigt Authentifizierung)
+- `POST /checkout/placeorder` - Bestellung abschließen (benötigt Authentifizierung)
+
+
+## Kubernetes-Funktionalität
+
+Die folgenden Befehle deployen alle Services in den Namespace `devops-lecture`, prüfen den Zustand und testen die Selbstheilung von Kubernetes.
+
+```bash
+# 1) Namespace anlegen
+kubectl apply -f k8s/namespace.yaml
+
+# 2) Deployments + Services ausrollen
+kubectl apply -n devops-lecture -f k8s/auth-service.yaml
+kubectl apply -n devops-lecture -f k8s/checkout-service.yaml
+kubectl apply -n devops-lecture -f k8s/product-service.yaml
+
+# 3) Überblick über laufende Pods und Services
+kubectl get pods,svc -n devops-lecture
+```
+
+### Selbstheilung (Self-Healing) demonstrieren
+
+Wenn alle Pods gelöscht werden, erstellt das Deployment automatisch neue Pods mit der gewünschten Replikazahl.
+
+```bash
+# Alle Pods im Namespace löschen
+kubectl delete pod --all -n devops-lecture
+
+# Neuaufbau in Echtzeit beobachten
+kubectl get pods -n devops-lecture -w
+```
+
+### API lokal testen per Port-Forward
+
+Mit Port-Forward wird der Service aus dem Cluster auf `localhost` verfügbar gemacht.
+
+```bash
+# Auth-Service lokal auf Port 8080 erreichbar machen
+kubectl port-forward -n devops-lecture svc/auth-service 8080:80
+
+# Login-Endpoint testen
+curl -X POST -d "username=user&password=pass" http://localhost:8080/auth/login
+```
 
 
 ### Mit Docker ausführen
@@ -40,7 +82,6 @@ Diese Anwendung ist ein einfaches E-Commerce-Backend, das die grundlegenden Funk
    ```bash
    docker run -p 8080:8080 devops-lecture
    ```
-
 
 ## Docker Image
 
