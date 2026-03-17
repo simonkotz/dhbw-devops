@@ -7,13 +7,16 @@ spec:
     namespace: monitoring
     server: https://kubernetes.default.svc
   source:
-    path: ''
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 10.5.15
     chart: grafana
     helm:
-      values: ''
-  sources: []
+      values: |
+        sidecar:
+          dashboards:
+            enabled: true
+            label: grafana_dashboard
+            labelValue: "1"
   project: default
   syncPolicy:
     automated:
