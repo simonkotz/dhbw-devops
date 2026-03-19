@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tempo
+spec:
+  project: default
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://grafana-community.github.io/helm-charts
+    targetRevision: 2.6.2
+    chart: tempo-distributed
+    helm:
+      values: |
+        tempo:
+          minio:
+            enabled: true
+          storage:
+            trace:
+              backend: s3
+              wal:
+                backend: local
+              s3:
+                bucket: tempo-traces
+                endpoint: minio.monitoring.svc.cluster.local:9000
+                insecure: true
+                access_key: loki-minio-user
+                secret_key: loki-minio-password
+          compactor:
+            enabled: false
+        gateway:
+          enabled: true
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
