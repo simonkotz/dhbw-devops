@@ -1,24 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: loki
 spec:
   destination:
     namespace: monitoring
     server: https://kubernetes.default.svc
   sources:
-    - repoURL: https://grafana.github.io/helm-charts
-      targetRevision: 10.5.15
-      chart: grafana
+    - repoURL: https://grafana-community.github.io/helm-charts
+      targetRevision: 6.56.1
+      chart: loki
       helm:
         valueFiles:
-          - $values/k8s/argo-lgtm-apps/values/grafana-values.yaml
+          - $values/k8s/argo-lgtm-apps/values/loki-values.yaml
     - repoURL: https://github.com/simonkotz/dhbw-devops
       targetRevision: main
       ref: values
   project: default
   syncPolicy:
     automated:
+      prune: false
       selfHeal: true
     syncOptions:
       - CreateNamespace=true

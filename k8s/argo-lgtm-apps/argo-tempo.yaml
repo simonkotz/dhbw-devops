@@ -7,35 +7,16 @@ spec:
   destination:
     namespace: monitoring
     server: https://kubernetes.default.svc
-  source:
-    repoURL: https://grafana-community.github.io/helm-charts
-    targetRevision: 2.6.2
-    chart: tempo-distributed
-    helm:
-      values: |
-        tempo:
-          minio:
-            enabled: false
-          storage:
-            trace:
-              backend: local
-              wal:
-                backend: local
-          compactor:
-            enabled: false
-        gateway:
-          enabled: true
-        distributor:
-          replicas: 1
-        ingester:
-          replicas: 1
-          persistence:
-            enabled: true
-            size: 5Gi
-        querier:
-          replicas: 1
-        queryFrontend:
-          enabled: false
+  sources:
+    - repoURL: https://grafana-community.github.io/helm-charts
+      targetRevision: 2.6.2
+      chart: tempo-distributed
+      helm:
+        valueFiles:
+          - $values/k8s/argo-lgtm-apps/values/tempo-values.yaml
+    - repoURL: https://github.com/simonkotz/dhbw-devops
+      targetRevision: main
+      ref: values
   syncPolicy:
     automated:
       prune: false
