@@ -28,7 +28,7 @@ spec:
         distributor:
           replicas: 1
         ingester:
-          replicas: 1
+          replicas: 2
           persistence:
             enabled: true
             size: 5Gi
