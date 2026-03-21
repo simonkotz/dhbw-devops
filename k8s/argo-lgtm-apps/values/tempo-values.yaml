@@ -1,0 +1,23 @@
+tempo:
+  minio:
+    enabled: false
+  storage:
+    trace:
+      backend: local
+      wal:
+        backend: local
+  compactor:
+    enabled: false
+gateway:
+  enabled: true
+distributor:
+  replicas: 1
+ingester:
+  replicas: 3
+  persistence:
+    enabled: true
+    size: 5Gi
+querier:
+  replicas: 1
+queryFrontend:
+  enabled: false
