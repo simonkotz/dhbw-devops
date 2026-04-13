@@ -1,6 +1,6 @@
 package product
 
-// Static data for three products
+// data for three products
 
 var products = []Product{
 	{ID: 1, Name: "Product 1", Price: 19.99},

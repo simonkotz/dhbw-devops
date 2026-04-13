@@ -12,6 +12,7 @@ func SetSecretKey(key []byte) {
 	secretKey = key
 }
 
+// GenerateToken generates a JWT token for a given username
 func VerifyToken(tokenString string) bool {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {

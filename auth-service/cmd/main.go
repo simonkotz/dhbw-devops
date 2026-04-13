@@ -14,7 +14,7 @@ func main() {
 	jwt.SetSecretKey([]byte("secret-key"))
 
 	mux := http.NewServeMux()
-	// Auth Service Function
+	// Auth Service
 	mux.HandleFunc("/auth/login", auth.AuthLoginHandler)
 	mux.HandleFunc("/auth/logout", auth.AuthLogoutHandler)
 
