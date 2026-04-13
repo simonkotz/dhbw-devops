@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/simonkotz/dhbw-devops/compare/checkout-service-1.6.0...checkout-service-1.7.0) (2026-04-13)
+
+
+### Features
+
+* add product ([8881742](https://github.com/simonkotz/dhbw-devops/commit/8881742113350c3f6d6cd8ff571c1051ec9a7486))
+
 ## [1.6.0](https://github.com/simonkotz/dhbw-devops/compare/checkout-service-1.5.0...checkout-service-1.6.0) (2026-04-13)
 
 
