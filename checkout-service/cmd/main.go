@@ -14,7 +14,7 @@ func main() {
 	jwt.SetSecretKey([]byte("secret-key"))
 
 	mux := http.NewServeMux()
-	// Checkout Service
+
 	mux.HandleFunc("/checkout/placeorder", checkout.CheckoutPlaceOrderHandler)
 
 	port := 8080

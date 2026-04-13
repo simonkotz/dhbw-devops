@@ -11,6 +11,7 @@ import (
 
 func main() {
 
+	// Set the secret key for JWT token generation and verification
 	jwt.SetSecretKey([]byte("secret-key"))
 
 	mux := http.NewServeMux()
