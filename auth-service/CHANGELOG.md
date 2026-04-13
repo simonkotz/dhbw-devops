@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/simonkotz/dhbw-devops/compare/auth-service-1.4.0...auth-service-1.5.0) (2026-04-13)
+
+
+### Features
+
+* deleted old product ([155982c](https://github.com/simonkotz/dhbw-devops/commit/155982ccae481bda589cc94e0cb9b973ea123cb1))
+
 ## [1.4.0](https://github.com/simonkotz/dhbw-devops/compare/auth-service-1.3.0...auth-service-1.4.0) (2026-04-13)
 
 
