@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0](https://github.com/simonkotz/dhbw-devops/compare/auth-service-1.3.0...auth-service-1.4.0) (2026-04-13)
+
+
+### Features
+
+* add missing product entry ([45f9a8b](https://github.com/simonkotz/dhbw-devops/commit/45f9a8bdacbcc04da971f597f15e4768accedd2e))
+* add missing product entry ([ad333fb](https://github.com/simonkotz/dhbw-devops/commit/ad333fb400bab1d3536b8bc89a5de21158b7b701))
+
 ## [1.3.0](https://github.com/simonkotz/dhbw-devops/compare/auth-service-1.2.0...auth-service-1.3.0) (2026-03-02)
 
 
