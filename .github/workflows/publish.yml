@@ -59,3 +59,20 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/${{ steps.service.outputs.service }}:${{ steps.service.outputs.version }}
             ghcr.io/${{ github.repository_owner }}/${{ steps.service.outputs.service }}:latest
+
+      #Generate SBOM from the pushed image
+      - name: Generate SBOM with Syft
+        uses: anchore/sbom-action@v0
+        with:
+          image: ghcr.io/${{ github.repository_owner }}/${{ steps.service.outputs.service }}:${{ steps.service.outputs.version }}
+          format: cyclonedx-json
+          output-file: sbom.cyclonedx.json
+          artifact-name: ${{ steps.service.outputs.service }}-${{ steps.service.outputs.version }}-sbom
+
+      # Scan SBOM for CVEs with Grype
+      - name: Scan SBOM for CVEs with Grype
+        uses: anchore/scan-action@v3
+        with:
+          sbom: sbom.cyclonedx.json
+          fail-build: false
+          severity-cutoff: high
