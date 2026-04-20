@@ -5,6 +5,21 @@ resource "azurerm_resource_group" "this" {
   location = var.location
 }
 
+# === KUBERNETES CLUSTER ===
+
+resource "azurerm_kubernetes_cluster" "main" {
+  name                = var.aks_name
+  location            = var.location
+  resource_group_name = azurerm_resource_group.main.name
+  dns_prefix = var.dns_prefix
+  default_node_pool {
+    name       = "system"
+    node_count = var.node_count
+    vm_size    = var.node_vm_size
+
+}
+ 
+
 # === AUTH SERVICE ===
 resource "kubernetes_manifest" "auth_deployment" {
   manifest = {
