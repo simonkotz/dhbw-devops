@@ -1,6 +1,6 @@
 # === RESOURCE GROUP ===
 
-resource "azurerm_resource_group" "this" {
+resource "azurerm_resource_group" "main" {
   name     = var.name
   location = var.location
 }
@@ -9,14 +9,19 @@ resource "azurerm_resource_group" "this" {
 
 resource "azurerm_kubernetes_cluster" "main" {
   name                = var.aks_name
-  location            = var.location
+  location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
-  dns_prefix = var.dns_prefix
+  dns_prefix          = var.dns_prefix
+  identity {
+    type = "SystemAssigned"
+  }
   default_node_pool {
     name       = "system"
     node_count = var.node_count
     vm_size    = var.node_vm_size
+  }
 
+  role_based_access_control_enabled = true
 }
  
 
