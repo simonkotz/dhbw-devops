@@ -16,6 +16,30 @@ variable "location" {
   default     = "westeurope"
 }
 
+variable "aks_name" {
+  description = "Name des AKS Clusters"
+  type        = string
+  default     = "my-aks"
+}
+
+variable "dns_prefix" {
+  description = "DNS prefix für den AKS Cluster"
+  type        = string
+  default     = "myaks"
+}
+
+variable "node_count" {
+  description = "Node-Anzahl im Default Node Pool"
+  type        = number
+  default     = 2
+}
+
+variable "node_vm_size" {
+  description = "VM-Größe für die AKS Nodes"
+  type        = string
+  default     = "Standard_B2s"
+}
+
 variable "k8s_host" {
   description = "Kubernetes API Server URL"
   type        = string

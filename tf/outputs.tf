@@ -2,12 +2,12 @@
 # --- Azure Resource group ---
 output "resource_group_name" {
   description = "Name der Ressource group"
-  value       = azurerm_resource_group.this.name
+  value       = azurerm_resource_group.main.name
 }
 
 output "resource_group_id" {
   description = "ID der Resource group"
-  value       = azurerm_resource_group.this.id
+  value       = azurerm_resource_group.main.id
 }
 
 # --- Kubernetes Services ---
