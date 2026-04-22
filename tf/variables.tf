@@ -39,26 +39,3 @@ variable "node_vm_size" {
   type        = string
   default     = "Standard_B2s"
 }
-
-variable "k8s_host" {
-  description = "Kubernetes API Server URL"
-  type        = string
-}
-
-variable "k8s_client_certificate" {
-  description = "Kubernetes Client Certificate (base64)"
-  type        = string
-  sensitive   = true
-}
-
-variable "k8s_client_key" {
-  description = "Kubernetes Client Key (base64)"
-  type        = string
-  sensitive   = true
-}
-
-variable "k8s_cluster_ca_certificate" {
-  description = "Kubernetes CA Certificate (base64)"
-  type        = string
-  sensitive   = true
-}
