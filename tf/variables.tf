@@ -13,7 +13,7 @@ variable "name" {
 variable "location" {
   description = "Azure Region"
   type        = string
-  default     = "westeurope"
+  default     = "austriaeast"
 }
 
 variable "aks_name" {
@@ -31,11 +31,11 @@ variable "dns_prefix" {
 variable "node_count" {
   description = "Node-Anzahl im Default Node Pool"
   type        = number
-  default     = 2
+  default     = 1
 }
 
 variable "node_vm_size" {
   description = "VM-Größe für die AKS Nodes"
   type        = string
-  default     = "Standard_B2s"
+  default     = "standard_b2s_v2"
 }
