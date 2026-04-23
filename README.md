@@ -2,6 +2,11 @@
 
 Projekt für die Vorlesung "Einführung in DevOps, Continuous Delivery Tools und Mindset" an der DHBW.
 
+## Credits
+Das Projekt wurde durchgeführt von
+
+Finja Koopmann (INF23BD)
+Simon Kotz (INF23BD)
 
 ## Übersicht
 
@@ -29,8 +34,12 @@ Diese Anwendung ist ein einfaches E-Commerce-Backend, das die grundlegenden Funk
 - `POST /checkout/placeorder` - Bestellung abschließen (benötigt Authentifizierung)
 
 
-## Kubernetes-Funktionalität
+## Kubernetes
 
+In der Vorlesung wurden verschiedene Wege umgesetzt, um das Projekt auf verschiedenen Plattformen bereitzustellen. Verwendet wurden Setups mit ArgoCD, Azure und Minikube.
+
+### Allgemeines Deployment (in der Vorlesung mit Minikube)
+#### Aufbau
 Die folgenden Befehle deployen alle Services in den Namespace `devops-lecture`, prüfen den Zustand und testen die Selbstheilung von Kubernetes.
 
 ```bash
@@ -46,7 +55,7 @@ kubectl apply -n devops-lecture -f k8s/product-service.yaml
 kubectl get pods,svc -n devops-lecture
 ```
 
-### Selbstheilung (Self-Healing) demonstrieren
+#### Selbstheilung (Self-Healing) demonstrieren
 
 Wenn alle Pods gelöscht werden, erstellt das Deployment automatisch neue Pods mit der gewünschten Replikazahl.
 
@@ -58,7 +67,7 @@ kubectl delete pod --all -n devops-lecture
 kubectl get pods -n devops-lecture -w
 ```
 
-### API lokal testen per Port-Forward
+#### API lokal testen per Port-Forward (beim lokalen Test mit Minikube)
 
 Mit Port-Forward wird der Service aus dem Cluster auf `localhost` verfügbar gemacht.
 
@@ -68,10 +77,18 @@ kubectl port-forward -n devops-lecture svc/auth-service 8080:80
 
 # Login-Endpoint testen
 curl -X POST -d "username=user&password=pass" http://localhost:8080/auth/login
+
 ```
+### Exemplarischer Aufbau nach Git-Stand mit ArgoCD
 
+Unter /k8s/argo-apps liegen die Yamls für die Verwaltung und Bereitstellung des Projekts bereit (jeweils mit argo-Präfix).
+In der Vorlesung wurde auch die Erstellung von Dashboards mit Grafana gezeigt. Die dazu gehörenden Dateien liegen unter /k8s/argo-lgtm-apps. Dabei wurde Helm eingesetzt.
 
-### Mit Docker ausführen
+### Exemplarisches Hosting mit Azure und Tofu
+
+Unter /tf liegen entsprechende Dateien, um das Projekt auf Azure zu hosten. Die Justfile mit den notwendigen Befehlen liegt im Stammverzeichnis. Die Variablen auf variables.tf sind so konfiguriert, dass das Projekt kompatibel mit der Student-Lizenz von Azure ist. Individuell muss eine terraform.tfvars-Datei gemäß der example-Datei erstellt werden.
+
+### Ausführung mit Docker
 
 1. Image bauen:
    ```bash
@@ -83,12 +100,20 @@ curl -X POST -d "username=user&password=pass" http://localhost:8080/auth/login
    docker run -p 8080:8080 devops-lecture
    ```
 
-## Docker Image
+### Image-Registry
 
-Ein vorkonfiguriertes Docker-Image ist auf Docker Hub verfügbar:
-
+Für die Vorlesung wurde Docker Hub getestet. Ein vorkonfiguriertes Docker-Image ist auf Docker Hub verfügbar:
 ```bash
 docker pull sktz/devops-lecture:latest
 ```
-
 Alle verfügbaren Versionen und weitere Informationen auf [Docker Hub](https://hub.docker.com/repository/docker/sktz/devops-lecture/general).
+
+Für alle weiteren Image-Uploads wurde GHCR verwendet (siehe Releases und Images auf Github-Repo).
+
+## GitHub Workflows
+
+Wir haben Workflows erstellt (siehe /.github/workflows), die beim Pushen neuer Features folgende Aktionen ausführen:
+
+- Erstellung von Releases
+- Bereitstellung von Images in GHCR
+- Überprüfung auf Schwachstellen
