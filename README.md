@@ -47,9 +47,9 @@ Die folgenden Befehle deployen alle Services in den Namespace `devops-lecture`, 
 kubectl apply -f k8s/namespace.yaml
 
 # 2) Deployments + Services ausrollen
-kubectl apply -n devops-lecture -f k8s/auth-service.yaml
-kubectl apply -n devops-lecture -f k8s/checkout-service.yaml
-kubectl apply -n devops-lecture -f k8s/product-service.yaml
+kubectl apply -n devops-lecture -f k8s/auth-service/auth-service.yaml
+kubectl apply -n devops-lecture -f k8s/checkout-service/checkout-service.yaml
+kubectl apply -n devops-lecture -f k8s/product-service/product-service.yaml
 
 # 3) Überblick über laufende Pods und Services
 kubectl get pods,svc -n devops-lecture
